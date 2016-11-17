@@ -1,0 +1,30 @@
+
+public class Manager extends Employee{
+	
+	private double bonus;
+	
+	public Manager() {
+		this("");
+	}
+	public Manager(String name) {
+		this(name, 0.0);
+	}
+	public Manager(String name, double salary) {
+		this(name,salary,EmployeeType.BUSBOY);
+	}
+	public Manager(String name, double salary, EmployeeType type) {
+		this(name,salary,type,0.0);
+	}
+	public Manager(String name, double salary, EmployeeType type, double bonus) {
+		super(name, salary, type);
+		setBonus(bonus);
+	}
+	
+	
+	
+	
+	public double getTotSalary() 		{	return bonus + getSalary();		}
+	public double getBonus() 			{	return bonus;					}
+	public void setBonus(double bonus) 	{	this.bonus = bonus;				}
+	
+}

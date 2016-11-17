@@ -2,7 +2,9 @@
 public class Employee {
 	
 	private double salary;
-	private String name, position;
+	private String name;
+	private int empNum;
+	private EmployeeType type;
 	
 	public Employee()	{
 		this("");
@@ -11,22 +13,27 @@ public class Employee {
 		this(name,0);
 	}
 	public Employee(String name, double salary) {
-		this(name,0,"");
+		this(name,salary,-1);
 	}
-	public Employee(String name, double salary, String position) {
+	public Employee(String name, double salary, int empNum) {
+		this(name,0,empNum,EmployeeType.NA);
+	}
+	public Employee(String name, double salary, int empNum, EmployeeType type) {
 		setSalary(salary);
 		setName(name);
-		setPosition(position);
+		setType(type);
 		
 	}
 	
 	
-	public String getName() {return name;}
-	public void setName(String name) {this.name = name;}
-	public String getPosition() {return position;}
-	public void setPosition(String position) {this.position = position;}
-	public double getSalary() {return salary;}
-	public void setSalary(double salary) {this.salary = salary;}
+	public int getEmpNum() 					{	return empNum;			}
+	public void setEmpNum(int empNum) 		{	this.empNum = empNum;	}
+	public String getName() 				{	return name;			}
+	public void setName(String name) 		{	this.name = name;		}
+	public EmployeeType getType() 			{	return type;			}
+	public void setType(EmployeeType type) 	{	this.type = type;		}
+	public double getSalary() 				{	return salary;			}
+	public void setSalary(double salary) 	{	this.salary = salary;	}
 	
 	
 }

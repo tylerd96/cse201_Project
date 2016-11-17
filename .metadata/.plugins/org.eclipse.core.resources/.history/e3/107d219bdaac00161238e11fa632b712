@@ -1,0 +1,27 @@
+
+public class BusBoy extends Employee {
+	
+private double tips;
+	
+	public BusBoy() {
+		this("");
+	}
+	public BusBoy(String name) {
+		this(name, 0.0);
+	}
+	public BusBoy(String name, double salary) {
+		this(name,salary,"");
+	}
+	public BusBoy(String name, double salary, String position) {
+		this(name,salary,position,0.0);
+	}
+	public BusBoy(String name, double salary, String position, double tips) {
+		super(name, salary, position);
+		setTips(tips);
+	}
+	
+	
+	public double getTotSalary() 		{	return tips + getSalary();	}
+	public double getTips() 			{	return tips;				}
+	public void setTips(double tips) 	{	this.tips = tips;			}
+}
