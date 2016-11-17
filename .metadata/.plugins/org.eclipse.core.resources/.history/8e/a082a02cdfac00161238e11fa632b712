@@ -1,10 +1,8 @@
 
 public class Manager extends Employee{
 	
-	//Instance variables
 	private double bonus;
 	
-	// Constructors
 	public Manager() {
 		this("");
 	}
@@ -26,7 +24,6 @@ public class Manager extends Employee{
 	
 	
 	public double getTotSalary() 		{	return getBonus() + getSalary();		}
-	// Getters and setters
 	public double getBonus() 			{	return bonus;							}
 	public void setBonus(double bonus) 	{	this.bonus = bonus;						}
 	

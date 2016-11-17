@@ -1,10 +1,8 @@
 
 public class Hostess extends Employee {
 	
-	// Instance Variables
 	private double tips;
 	
-	// Concstructors
 	public Hostess() {
 		this("");
 	}
@@ -24,7 +22,6 @@ public class Hostess extends Employee {
 	
 	
 	public double getTotSalary() 		{	return getTips() + getSalary();	}
-	// Getters and Setters
 	public double getTips() 			{	return tips;					}
 	public void setTips(double tips) 	{	this.tips = tips;				}
 	

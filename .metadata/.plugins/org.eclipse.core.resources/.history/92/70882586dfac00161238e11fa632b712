@@ -1,13 +1,11 @@
 
 public class Employee {
 	
-	//Instance variables
 	private double salary;
 	private String name;
 	private int empNum;
 	private EmployeeType type;
 	
-	// Constructors
 	public Employee()	{
 		this("");
 	}
@@ -28,7 +26,6 @@ public class Employee {
 	}
 	
 	
-	// Getters and Setters
 	public int getEmpNum() 					{	return empNum;			}
 	public void setEmpNum(int empNum) 		{	this.empNum = empNum;	}
 	public String getName() 				{	return name;			}

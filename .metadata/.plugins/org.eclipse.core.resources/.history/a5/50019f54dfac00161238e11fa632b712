@@ -1,10 +1,7 @@
 
 public class Cook extends Employee {
-	
-	// Instance Variables
 	private double bonus;
 	
-	// Constructors
 	public Cook() {
 		this("");
 	}
@@ -19,12 +16,11 @@ public class Cook extends Employee {
 	}
 	public Cook(String name, double salary,int empNum, double bonus) {
 		super(name, salary,empNum, EmployeeType.COOK);
-		setBonus(bonus);
+		setBonus(tips);
 	}
 	
 	
-	public double getTotSalary() 		{	return getBonus() + getSalary();}
-	// Getters and Setters
+	public double getTotSalary() 		{	return getBonus() + getSalary();	}
 	public double getBonus() 			{	return bonus;					}
 	public void setBonus(double tips) 	{	this.bonus = tips;				}
 }
