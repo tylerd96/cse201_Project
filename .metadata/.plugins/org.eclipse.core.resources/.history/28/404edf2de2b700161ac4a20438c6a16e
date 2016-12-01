@@ -51,6 +51,8 @@ public class tester {
 		
 		area = new JTextArea(15,60);
 		
+		type = new JRadioButton("Test");
+		type.setAlignmentY(type.LEFT_ALIGNMENT);
 		
 		
 		JPanel panel = new JPanel();
@@ -58,6 +60,7 @@ public class tester {
 		panel.add(newEmployee);
 		panel.add(rmEmployee);
 		panel.add(getEmployee);
+		panel.add(type);
 		panel.add(area);
 		panel.add(save);
 		panel.add(load);

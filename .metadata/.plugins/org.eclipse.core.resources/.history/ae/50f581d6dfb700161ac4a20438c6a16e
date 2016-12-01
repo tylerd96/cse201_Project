@@ -14,13 +14,7 @@ public class tester {
 	public static JButton save;
 	public static JButton load;
 	public static JTextArea area;
-	//public static JRadioButtonMenuItem type;
-	public static JRadioButton busBoy;
-	public static JRadioButton cook;
-	public static JRadioButton host;
-	public static JRadioButton manager;
-	public static JRadioButton waiter;
-	public static ButtonGroup group;
+	public static JRadioButtonMenuItem choice;
 	
 	public void createComponents() {
 		JFrame frame = new JFrame();
@@ -51,13 +45,12 @@ public class tester {
 		
 		area = new JTextArea(15,60);
 		
-		
-		
 		JPanel panel = new JPanel();
 		panel.add(buildingStats);
 		panel.add(newEmployee);
 		panel.add(rmEmployee);
 		panel.add(getEmployee);
+		panel.add(choice);
 		panel.add(area);
 		panel.add(save);
 		panel.add(load);

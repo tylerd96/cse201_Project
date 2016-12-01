@@ -1,12 +1,10 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 public class tester {
 	
 	public tester() {createComponents();}
 	
-	ArrayList<Employee> employees = new ArrayList<Employee>();
 	public static JButton buildingStats;
 	public static JButton newEmployee;
 	public static JButton rmEmployee;
@@ -14,13 +12,6 @@ public class tester {
 	public static JButton save;
 	public static JButton load;
 	public static JTextArea area;
-	//public static JRadioButtonMenuItem type;
-	public static JRadioButton busBoy;
-	public static JRadioButton cook;
-	public static JRadioButton host;
-	public static JRadioButton manager;
-	public static JRadioButton waiter;
-	public static ButtonGroup group;
 	
 	public void createComponents() {
 		JFrame frame = new JFrame();
@@ -28,6 +19,8 @@ public class tester {
 		buildingStats = new JButton("Show Statistics");
 		ActionListener statsList = new statsListener();
 		buildingStats.addActionListener(statsList);
+		buildingStats.setAlignmentX(100);
+		buildingStats.setAlignmentY(300);
 		
 		newEmployee = new JButton("Add Employee");
 		ActionListener newList = new newListener();
@@ -41,17 +34,7 @@ public class tester {
 		ActionListener getList = new getListener();
 		getEmployee.addActionListener(getList);
 		
-		save = new JButton("Save");
-		ActionListener saveList = new saveListener();
-		save.addActionListener(saveList);
-		
-		load = new JButton("Load");
-		ActionListener loadList = new getListener();
-		load.addActionListener(loadList);
-		
 		area = new JTextArea(15,60);
-		
-		
 		
 		JPanel panel = new JPanel();
 		panel.add(buildingStats);
@@ -59,8 +42,6 @@ public class tester {
 		panel.add(rmEmployee);
 		panel.add(getEmployee);
 		panel.add(area);
-		panel.add(save);
-		panel.add(load);
 		
 		frame.add(panel);
 		final int FRAME_WIDTH = 800;
@@ -86,6 +67,7 @@ public class tester {
 			// TODO Auto-generated method stub
 			
 		}
+		
 	}
 	// Remove Employee actions
 	class rmListener implements ActionListener {
@@ -94,6 +76,7 @@ public class tester {
 			// TODO Auto-generated method stub
 			
 		}
+		
 	}
 	// Get Statistics actions
 	class statsListener implements ActionListener {
@@ -102,22 +85,7 @@ public class tester {
 			// TODO Auto-generated method stub
 			
 		}
-	}
-	// Saving actions
-	class saveListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-	}
-	// Loading actions
-	class loadListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		
 	}
 	
 	public static void main(String args[]) {
