@@ -1,0 +1,94 @@
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+public class tester {
+	
+	public tester() {createComponents();}
+	
+	public static JButton buildingStats;
+	public static JButton newEmployee;
+	public static JButton rmEmployee;
+	public static JButton getEmployee;
+	public static JButton save;
+	public static JButton load;
+	public static JTextArea area;
+	
+	public void createComponents() {
+		JFrame frame = new JFrame();
+		
+		buildingStats = new JButton("Show Statistics");
+		ActionListener statsList = new statsListener();
+		buildingStats.addActionListener(statsList);
+		buildingStats.setAlignmentX(100);
+		buildingStats.setAlignmentY(300);
+		
+		newEmployee = new JButton("Add Employee");
+		ActionListener newList = new newListener();
+		newEmployee.addActionListener(newList);
+		
+		rmEmployee = new JButton("Remove Employee");
+		ActionListener rmList = new rmListener();
+		rmEmployee.addActionListener(rmList);
+		
+		getEmployee = new JButton("Get Employee");
+		ActionListener getList = new getListener();
+		getEmployee.addActionListener(getList);
+		
+		area = new JTextArea(10,60);
+		
+		JPanel panel = new JPanel();
+		panel.add(buildingStats);
+		panel.add(newEmployee);
+		panel.add(rmEmployee);
+		panel.add(getEmployee);
+		panel.add(area);
+		
+		frame.add(panel);
+		final int FRAME_WIDTH = 800;
+		final int FRAME_HEIGHT = 400;
+		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		frame.setTitle("Restauraunt Simulator");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setVisible(true);
+	}
+	// Get Employee actions
+	class getListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	// New Employee actions
+	class newListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	// Remove Employee actions
+	class rmListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	// Get Statistics actions
+	class statsListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	public static void main(String args[]) {
+		new tester();
+	}
+}
