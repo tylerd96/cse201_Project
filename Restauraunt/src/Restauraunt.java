@@ -13,7 +13,7 @@ public class Restauraunt {
 	}
 	
 	
-	
+	// add remove employees
 	public double getTotalCosts() {
 		double money = 0;
 		for(Employee e : employees) {
