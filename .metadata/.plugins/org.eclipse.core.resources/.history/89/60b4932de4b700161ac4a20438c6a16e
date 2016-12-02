@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 public class tester {
 	
@@ -29,22 +28,18 @@ public class tester {
 		buildingStats = new JButton("Show Statistics");
 		ActionListener statsList = new statsListener();
 		buildingStats.addActionListener(statsList);
-		buildingStats.setPreferredSize(new Dimension(175,25));
 		
 		newEmployee = new JButton("Add Employee");
 		ActionListener newList = new newListener();
 		newEmployee.addActionListener(newList);
-		newEmployee.setPreferredSize(new Dimension(175,25));
 		
 		rmEmployee = new JButton("Remove Employee");
 		ActionListener rmList = new rmListener();
 		rmEmployee.addActionListener(rmList);
-		rmEmployee.setPreferredSize(new Dimension(175,25));
 		
 		getEmployee = new JButton("Get Employee");
 		ActionListener getList = new getListener();
 		getEmployee.addActionListener(getList);
-		getEmployee.setPreferredSize(new Dimension(175,25));
 		
 		save = new JButton("Save");
 		ActionListener saveList = new saveListener();
@@ -56,29 +51,13 @@ public class tester {
 		
 		area = new JTextArea(15,60);
 		
-		busBoy = new JRadioButton("Bus Boy");
-		cook = new JRadioButton("Cook");
-		host = new JRadioButton("Host");
-		manager = new JRadioButton("Manager");
-		waiter = new JRadioButton("Waiter");
 		
-		group = new ButtonGroup();
-		group.add(busBoy);
-		group.add(cook);
-		group.add(host);
-		group.add(manager);
-		group.add(waiter);
 		
 		JPanel panel = new JPanel();
 		panel.add(buildingStats);
 		panel.add(newEmployee);
 		panel.add(rmEmployee);
 		panel.add(getEmployee);
-		panel.add(busBoy);
-		panel.add(cook);
-		panel.add(host);
-		panel.add(manager);
-		panel.add(waiter);
 		panel.add(area);
 		panel.add(save);
 		panel.add(load);
@@ -140,14 +119,7 @@ public class tester {
 			
 		}
 	}
-	class radioListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	}
+	
 	public static void main(String args[]) {
 		new tester();
 	}

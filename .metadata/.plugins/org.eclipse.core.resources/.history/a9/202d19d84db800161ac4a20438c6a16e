@@ -62,7 +62,7 @@ public class tester {
 		manager = new JRadioButton("Manager");
 		waiter = new JRadioButton("Waiter");
 		
-		group = new ButtonGroup();
+		
 		group.add(busBoy);
 		group.add(cook);
 		group.add(host);

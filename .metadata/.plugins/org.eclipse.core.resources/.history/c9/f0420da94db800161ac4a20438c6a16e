@@ -62,12 +62,11 @@ public class tester {
 		manager = new JRadioButton("Manager");
 		waiter = new JRadioButton("Waiter");
 		
-		group = new ButtonGroup();
-		group.add(busBoy);
-		group.add(cook);
-		group.add(host);
-		group.add(manager);
-		group.add(waiter);
+//		group.add(busBoy);
+//		group.add(cook);
+//		group.add(host);
+//		group.add(manager);
+//		group.add(waiter);
 		
 		JPanel panel = new JPanel();
 		panel.add(buildingStats);
@@ -140,14 +139,7 @@ public class tester {
 			
 		}
 	}
-	class radioListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	}
+	
 	public static void main(String args[]) {
 		new tester();
 	}
