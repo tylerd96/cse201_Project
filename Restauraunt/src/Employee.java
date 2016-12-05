@@ -24,7 +24,7 @@ public class Employee {
 		setSalary(salary);
 		setName(name);
 		setType(type);
-		
+		setEmpNum(empNum);
 	}
 	
 	

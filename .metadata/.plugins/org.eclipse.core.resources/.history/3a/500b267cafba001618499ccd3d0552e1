@@ -1,0 +1,397 @@
+import javax.swing.*;
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+public class tester {
+	
+	public tester() {createComponents();}
+	
+	ArrayList<Employee> employees = new ArrayList<Employee>();
+	public static JButton buildingStats;
+	public static JButton newEmployee;
+	public static JButton rmEmployee;
+	public static JButton getEmployee;
+	public static JButton save;
+	public static JButton load;
+	public static JTextArea area;
+	//public static JRadioButtonMenuItem type;
+	public static JRadioButton busBoy;
+	public static JRadioButton cook;
+	public static JRadioButton host;
+	public static JRadioButton manager;
+	public static JRadioButton waiter;
+	public static ButtonGroup group;
+	private boolean addPress = false;
+	private int addStage = 0;
+	private boolean getPress = false;
+	private boolean rmPress = false;
+	StringTokenizer st;
+	private int num = -1;
+	private EmployeeType type = EmployeeType.NA;
+	private double salary = 0;
+	private String name = "";
+	private double tipBonus = 0;
+	boolean bon = false;
+	
+	public void createComponents() {
+		JFrame frame = new JFrame();
+		
+		buildingStats = new JButton("Show Statistics");
+		ActionListener statsList = new statsListener();
+		buildingStats.addActionListener(statsList);
+		buildingStats.setPreferredSize(new Dimension(175,25));
+		
+		newEmployee = new JButton("Add Employee");
+		ActionListener newList = new newListener();
+		newEmployee.addActionListener(newList);
+		newEmployee.setPreferredSize(new Dimension(175,25));
+		
+		rmEmployee = new JButton("Remove Employee");
+		ActionListener rmList = new rmListener();
+		rmEmployee.addActionListener(rmList);
+		rmEmployee.setPreferredSize(new Dimension(175,25));
+		
+		getEmployee = new JButton("Get Employee");
+		ActionListener getList = new getListener();
+		getEmployee.addActionListener(getList);
+		getEmployee.setPreferredSize(new Dimension(175,25));
+		
+		save = new JButton("Save");
+		ActionListener saveList = new saveListener();
+		save.addActionListener(saveList);
+		
+		load = new JButton("Load");
+		ActionListener loadList = new getListener();
+		load.addActionListener(loadList);
+		
+		area = new JTextArea(15,60);
+		area.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int kc = e.getKeyCode();
+				//int num = -1;
+				//EmployeeType type = EmployeeType.NA;
+				//String name = "";
+				//double salary = 0;
+				//double tipBonus = 0;
+				//boolean bon = false;
+				if(kc == KeyEvent.VK_ENTER) {
+					if(addPress && addStage == 0) {//=============================== Add
+						st = new StringTokenizer(area.getText());
+						try {
+							st.nextToken(":");
+							String sub = st.nextToken(":");
+							sub = sub.trim();
+							num = Integer.parseInt(sub);
+							System.out.println(num);
+							if(busBoy.isSelected()) {
+								type = EmployeeType.BUSBOY;
+							} else if(cook.isSelected()) {
+								type = EmployeeType.COOK;
+								bon = true;
+							} else if(host.isSelected()) {
+								type = EmployeeType.HOSTESS;
+							} else if(manager.isSelected()) {
+								type = EmployeeType.MANAGER;
+								bon = true;
+							} else {
+								type = EmployeeType.WAITER;
+							}	
+							addStage++;
+							area.setText("Enter the employee's name: ");
+							for(Employee emp : employees) {
+								if(num == emp.getEmpNum()) {
+									area.setText("That employee number already exists! Please try again");
+									addPress = false;
+									addStage = 0;
+								}
+							}
+						} catch(Exception j) {
+							area.setText("An error occurred, remember, don't delete the /':/' and "
+									+ "enter in the right parameters.");
+							j.printStackTrace();
+						}
+						//addPress = false;
+						
+					} else if(addPress && addStage == 1) {
+						//System.out.println(num);
+						st = new StringTokenizer(area.getText());
+						try {
+							st.nextToken(":");
+							name = st.nextToken(":");
+							name = name.trim();	
+							addStage++;
+							area.setText("Enter in the Employee's salary: ");
+						} catch(Exception j) {
+							area.setText("An error occurred, remember, don't delete the /':/' and "
+									+ "enter in the right parameters.");
+							j.printStackTrace();
+						}
+						
+					} else if(addPress && addStage == 2) {
+						//System.out.println(num);
+						st = new StringTokenizer(area.getText());
+						try {
+							st.nextToken(":");
+							String s = st.nextToken(":");
+							s = s.trim();
+							salary = Double.parseDouble(s);
+							addStage++;
+							if(bon) {
+								area.setText("Enter in the employees monthly bonus: ");
+							} else {
+								area.setText("Enter in the employees average tip: ");
+							}
+						} catch (Exception e2) {
+							// TODO: handle exception
+							area.setText("An error occurred, remember, don't delete the /':/' and "
+									+ "enter in the right parameters.");
+							e2.printStackTrace();
+						}
+					} else if(addPress && addStage == 3) {
+						//System.out.println(num);
+						st = new StringTokenizer(area.getText());
+						try {
+							st.nextToken(":");
+							String s = st.nextToken(":");
+							s = s.trim();
+							tipBonus = Double.parseDouble(s);
+							Employee emp;
+							if(type == EmployeeType.BUSBOY) {
+								System.out.println(num);
+								emp = new BusBoy(name,salary,num,tipBonus);
+								//emp = new BusBoy()
+							} else if(type == EmployeeType.COOK) {
+								emp = new Cook(name,salary,num,tipBonus);
+							} else if(type == EmployeeType.HOSTESS) {
+								emp = new Hostess(name,salary,num,tipBonus);
+							} else if(type == EmployeeType.MANAGER) {
+								emp = new Manager(name, salary,num,tipBonus);
+							} else {
+								emp = new Waiter(name,salary,num,tipBonus);
+							}
+							addStage++;
+							employees.add(emp);
+							System.out.println(emp.getName() + emp.getEmpNum() + emp.getSalary());
+						} catch (Exception e2) {
+							// TODO: handle exception
+							area.setText("An error occurred, remember, don't delete the /':/' and "
+									+ "enter in the right parameters.");
+							e2.printStackTrace();
+						}
+					} else if(addPress && addStage ==4) {
+						area.setText("Employee added!");
+						addStage = 0;
+						name = "";
+						type = EmployeeType.NA;
+						num = -1;
+						salary = 0;
+						tipBonus = 0;
+						addPress = false;
+					} else if(getPress) {//====================================== Get
+						st = new StringTokenizer(area.getText());
+						try {
+							st.nextToken(":");
+							String sub = st.nextToken(":");
+							sub = sub.trim();
+							int num1 = Integer.parseInt(sub);
+							for(Employee h : employees) {
+								if(h.getEmpNum() == num1) {
+									if(h instanceof Cook) { // name salary num bonus
+										Cook c = (Cook)h;
+										area.setText("  Employee Num: " + c.getEmpNum() + 
+												"  Name: " + c.getName() + 
+												"  Type: " + c.getType() +
+												"  Salary: " + c.getSalary() + 
+												"  Employee Num: " + c.getEmpNum() + 
+												"  Bonus: " + c.getBonus());
+									} else if(h instanceof BusBoy) {
+										BusBoy b = (BusBoy)h;
+										area.setText("  Employee Num: " + b.getEmpNum() + 
+												"  Name: " + b.getName() + 
+												"  Type: " + b.getType() +
+												"  Salary: " + b.getSalary() + 
+												"  Employee Num: " + b.getEmpNum() + 
+												"  Bonus: " + b.getTips());
+										
+									} else if(h instanceof Manager) {
+										Manager m = (Manager)h;
+										area.setText("  Employee Num: " + m.getEmpNum() + 
+												"  Name: " + m.getName() + 
+												"  Type: " + m.getType() +
+												"  Salary: " + m.getSalary() + 
+												"  Employee Num: " + m.getEmpNum() + 
+												"  Bonus: " + m.getBonus());
+									} else if(h instanceof Hostess) {
+										Hostess host = (Hostess)h;
+										area.setText("  Employee Num: " + host.getEmpNum() + 
+												"  Name: " + host.getName() + 
+												"  Type: " + host.getType() +
+												"  Salary: " + host.getSalary() + 
+												"  Employee Num: " + host.getEmpNum() + 
+												"  Bonus: " + host.getTips());
+									} else { // Waiter
+										Waiter w = (Waiter)h;
+										area.setText("  Employee Num: " + w.getEmpNum() + 
+												"  Name: " + w.getName() + 
+												"  Type: " + w.getType() +
+												"  Salary: " + w.getSalary() + 
+												"  Employee Num: " + w.getEmpNum() + 
+												"  Bonus: " + w.getTips());
+									}
+									
+								}
+							}
+							
+						} catch (Exception e2) {
+							e2.printStackTrace();
+							area.setText("An error occurred, remember, don't delete the /':/' and "
+									+ "enter in the right parameters.");
+							
+						}
+						getPress = false;
+					} else if(rmPress) {// ====================================== Remove
+						st = new StringTokenizer(area.getText());
+						try {
+							st.nextToken(":");
+							String sub = st.nextToken(":");
+							sub = sub.trim();
+							int num1 = Integer.parseInt(sub);
+							if(employees.size() != 0) {
+								boolean found = false;
+								for(Employee h : employees) {
+									System.out.println(h.getEmpNum());
+									if(h.getEmpNum() == num1){
+										employees.remove(h);
+										found = true;
+									}
+								}
+								if(found) {
+									area.setText("Employee no. " + num1 + " removed.");
+								} else {
+									area.setText("Employee no. " + num1 + " not found.");
+								}
+							}
+							
+						} catch (Exception e2) {
+							area.setText("An error occurred, remember, don't delete the /':/' and "
+									+ "enter in the right parameters.");
+							e2.printStackTrace();
+						}
+						rmPress = false;
+					} 
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {}
+		
+		});
+		
+		busBoy = new JRadioButton("Bus Boy");
+		cook = new JRadioButton("Cook");
+		host = new JRadioButton("Host");
+		manager = new JRadioButton("Manager");
+		waiter = new JRadioButton("Waiter");
+		busBoy.setSelected(true);
+		
+		group = new ButtonGroup();
+		group.add(busBoy);
+		group.add(cook);
+		group.add(host);
+		group.add(manager);
+		group.add(waiter);
+		
+		
+		
+		JPanel panel = new JPanel();
+		panel.add(buildingStats);
+		panel.add(newEmployee);
+		panel.add(rmEmployee);
+		panel.add(getEmployee);
+		panel.add(busBoy);
+		panel.add(cook);
+		panel.add(host);
+		panel.add(manager);
+		panel.add(waiter);
+		panel.add(area);
+		panel.add(save);
+		panel.add(load);
+		
+		frame.add(panel);
+		final int FRAME_WIDTH = 800;
+		final int FRAME_HEIGHT = 400;
+		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		frame.setTitle("Restauraunt Simulator");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setVisible(true);
+	}
+	// Get Employee actions
+	class getListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			area.setText("Type employee's number you want to get: ");
+			getPress = true;
+		}
+	}
+	// New Employee actions
+	class newListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			area.setText("Enter the number of the new employee you would like to add, and "
+					+ "select their position above: ");
+			addPress = true;
+		}
+	}
+	// Remove Employee actions
+	class rmListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			area.setText("Enter the number of the employee you would like to remove: ");
+			rmPress = true;
+		}
+	}
+	// Get Statistics actions
+	class statsListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	// Saving actions
+	class saveListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	// Loading actions
+	class loadListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+	public static void main(String args[]) {
+		new tester();
+	}
+}
