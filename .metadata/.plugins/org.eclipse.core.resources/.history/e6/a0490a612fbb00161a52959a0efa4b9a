@@ -85,7 +85,9 @@ public class Restauraunt {
 	public double getTotalCosts() {
 		double money = 0;
 		for(Employee e : employees) {
-			money += e.getSalary();
+			if(e instanceof Manager) {
+				
+			}
 		}
 		return money + getBuildingCost();
 	}
@@ -100,17 +102,7 @@ public class Restauraunt {
 				return e;
 			}
 		}
-		return null;
-	}
-	public boolean rmvEmployee(int num) {
-		for(int i = employees.size()-1; i>=0; i--) {
-			Employee e = employees.get(i);
-			if(e.getEmpNum() == num) {
-				employees.remove(e);
-				return true;
-			}
-		}
-		return false;
+		return e;
 	}
 	
 	

@@ -31,21 +31,8 @@ public class Restauraunt {
 				int num = in.nextInt();
 				String name = in.next();
 				double salary=  in.nextDouble();
-				String type = in.next();
-				double tipBonus = in.nextDouble();
-				Employee emp;
-				if(type.equals("BUSBOY")) {
-					emp = new BusBoy(name,salary,num,tipBonus);
-				} else if(type.equals("COOK")) {
-					emp = new Cook(name,salary,num,tipBonus);
-				} else if(type.equals("HOSTESS")) {
-					emp = new Hostess(name,salary,num,tipBonus);
-				} else if(type.equals("MANAGER")) {
-					emp = new Manager(name,salary,num,tipBonus);
-				} else { // Waiter
-					emp = new Waiter(name,salary,num,tipBonus);
-				}
-				employees.add(emp);
+				
+				
 			}
 		} catch(Exception e) {
 			
@@ -58,20 +45,20 @@ public class Restauraunt {
 			pw.print(revenue+" ");
 			pw.print(cost+" ");
 			for(Employee e : employees) {
-				pw.print(e.getEmpNum() + " ");
-				pw.print(e.getName() + " ");
-				pw.print(e.getSalary() + " ");
-				pw.print(e.getType() + " ");
+				pw.print(e.getEmpNum());
+				pw.print(e.getName());
+				pw.print(e.getSalary());
+				pw.print(e.getType());
 				if(e instanceof BusBoy) {
-					pw.print(((BusBoy)e).getTips()+" ");
+					pw.print(((BusBoy)e).getTips());
 				} else if(e instanceof Cook) {
-					pw.print(((Cook)e).getBonus()+" ");
+					pw.print(((Cook)e).getBonus());
 				} else if(e instanceof Hostess) {
-					pw.print(((Hostess)e).getTips()+" ");
+					pw.print(((Hostess)e).getTips());
 				} else if(e instanceof Manager) {
-					pw.print(((Manager)e).getBonus()+" ");
+					pw.print(((Manager)e).getBonus());
 				} else {
-					pw.print(((Waiter)e).getTips()+ " ");
+					pw.print(((Waiter)e).getTips());
 				}
 			}
 			pw.close();
@@ -85,7 +72,9 @@ public class Restauraunt {
 	public double getTotalCosts() {
 		double money = 0;
 		for(Employee e : employees) {
-			money += e.getSalary();
+			if(e instanceof Manager) {
+				
+			}
 		}
 		return money + getBuildingCost();
 	}
@@ -94,24 +83,7 @@ public class Restauraunt {
 	}
 	public double getBuildingCost() {return cost;}
 	public void setBuildingCost(double cost) {this.cost = cost;}
-	public Employee getEmployee(int num) {
-		for(Employee e : employees) {
-			if(e.getEmpNum() == num) {
-				return e;
-			}
-		}
-		return null;
-	}
-	public boolean rmvEmployee(int num) {
-		for(int i = employees.size()-1; i>=0; i--) {
-			Employee e = employees.get(i);
-			if(e.getEmpNum() == num) {
-				employees.remove(e);
-				return true;
-			}
-		}
-		return false;
-	}
+	
 	
 	
 	

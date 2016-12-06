@@ -39,7 +39,7 @@ public class tester {
 	private String name = "";
 	private double tipBonus = 0;
 	boolean bon = false;
-	Restauraunt r = new Restauraunt(10000, 100);
+	Restauraunt r = new Restauraunt(100, 10000);
 	
 	public void createComponents() {
 		JFrame frame = new JFrame();
@@ -361,10 +361,7 @@ public class tester {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			area.setText("Total Building Revenue: " + r.getRevenue() +
-					"\nBuilding Rent Cost: " + r.getBuildingCost() + 
-					"\nTotal Building Costs: " + r.getTotalCosts() + 
-					"");
+			
 		}
 	}
 	// Saving actions
@@ -381,7 +378,7 @@ public class tester {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			r = r.load();
+			r.load();
 			area.setText("Loaded!");
 		}
 	}

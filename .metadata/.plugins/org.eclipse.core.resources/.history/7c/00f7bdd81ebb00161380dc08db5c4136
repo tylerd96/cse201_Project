@@ -39,7 +39,6 @@ public class tester {
 	private String name = "";
 	private double tipBonus = 0;
 	boolean bon = false;
-	Restauraunt r = new Restauraunt(10000, 100);
 	
 	public void createComponents() {
 		JFrame frame = new JFrame();
@@ -184,7 +183,7 @@ public class tester {
 								emp = new Waiter(name,salary,num,tipBonus);
 							}
 							addStage++;
-							r.addEmployee(emp);
+							employees.add(emp);
 							System.out.println(num);
 							System.out.println(emp.getName() + emp.getEmpNum() + emp.getSalary());
 						} catch (Exception e2) {
@@ -209,46 +208,46 @@ public class tester {
 							String sub = st.nextToken(":");
 							sub = sub.trim();
 							int num1 = Integer.parseInt(sub);
-							Employee emp = r.getEmployee(num1);
-							if(emp == null) {
-								area.setText("That employee doesn't exist!");
-							} else {
-								if(emp instanceof Cook) { // name salary num bonus
-									Cook c = (Cook)emp;
-									area.setText("  Employee Num: " + c.getEmpNum() + 
-											"\n  Name: " + c.getName() + 
-											"\n  Type: " + c.getType() +
-											"\n  Salary: " + c.getSalary() + 
-											"\n  Bonus: " + c.getBonus());
-								} else if(emp instanceof BusBoy) {
-									BusBoy b = (BusBoy)emp;
-									area.setText("  Employee Num: " + b.getEmpNum() + 
-											"\n  Name: " + b.getName() + 
-											"\n  Type: " + b.getType() +
-											"\n  Salary: " + b.getSalary() + 
-											"\n  Bonus: " + b.getTips());
+							for(Employee h : employees) {
+								if(h.getEmpNum() == num1) {
+									if(h instanceof Cook) { // name salary num bonus
+										Cook c = (Cook)h;
+										area.setText("  Employee Num: " + c.getEmpNum() + 
+												"\n  Name: " + c.getName() + 
+												"\n  Type: " + c.getType() +
+												"\n  Salary: " + c.getSalary() + 
+												"\n  Bonus: " + c.getBonus());
+									} else if(h instanceof BusBoy) {
+										BusBoy b = (BusBoy)h;
+										area.setText("  Employee Num: " + b.getEmpNum() + 
+												"\n  Name: " + b.getName() + 
+												"\n  Type: " + b.getType() +
+												"\n  Salary: " + b.getSalary() + 
+												"\n  Bonus: " + b.getTips());
+										
+									} else if(h instanceof Manager) {
+										Manager m = (Manager)h;
+										area.setText("  Employee Num: " + m.getEmpNum() + 
+												"\n  Name: " + m.getName() + 
+												"\n  Type: " + m.getType() +
+												"\n  Salary: " + m.getSalary() + 
+												"\n  Bonus: " + m.getBonus());
+									} else if(h instanceof Hostess) {
+										Hostess host = (Hostess)h;
+										area.setText("  Employee Num: " + host.getEmpNum() + 
+												"\n  Name: " + host.getName() + 
+												"\n  Type: " + host.getType() +
+												"\n  Salary: " + host.getSalary() + 
+												"\n  Bonus: " + host.getTips());
+									} else { // Waiter
+										Waiter w = (Waiter)h;
+										area.setText("  Employee Num: " + w.getEmpNum() + 
+												"\n  Name: " + w.getName() + 
+												"\n  Type: " + w.getType() +
+												"\n  Salary: " + w.getSalary() + 
+												"\n  Bonus: " + w.getTips());
+									}
 									
-								} else if(emp instanceof Manager) {
-									Manager m = (Manager)emp;
-									area.setText("  Employee Num: " + m.getEmpNum() + 
-											"\n  Name: " + m.getName() + 
-											"\n  Type: " + m.getType() +
-											"\n  Salary: " + m.getSalary() + 
-											"\n  Bonus: " + m.getBonus());
-								} else if(emp instanceof Hostess) {
-									Hostess host = (Hostess)emp;
-									area.setText("  Employee Num: " + host.getEmpNum() + 
-											"\n  Name: " + host.getName() + 
-											"\n  Type: " + host.getType() +
-											"\n  Salary: " + host.getSalary() + 
-											"\n  Bonus: " + host.getTips());
-								} else { // Waiter
-									Waiter w = (Waiter)emp;
-									area.setText("  Employee Num: " + w.getEmpNum() + 
-											"\n  Name: " + w.getName() + 
-											"\n  Type: " + w.getType() +
-											"\n  Salary: " + w.getSalary() + 
-											"\n  Bonus: " + w.getTips());
 								}
 							}
 							
@@ -267,12 +266,31 @@ public class tester {
 							sub = sub.trim();
 							int num1 = Integer.parseInt(sub);
 							//System.out.println("here");
-							if(r.rmvEmployee(num1)) {
-								area.setText("Employee No. " + num1 + " removed");
-							} else {
-								area.setText("Employee No. " + num1 + " not found.");
+							if(employees.size() != 0) {
+								boolean found = false;
+								for(int i = employees.size()-1; i>=0; i--) {
+									if(employees.get(i).getEmpNum() == num1) {
+										employees.remove(i);
+										found = true;
+									}
+								}
+//								for(Employee h : employees) {
+//									//System.out.println(h.getEmpNum());
+//									if(h.getEmpNum() == num1){
+//										System.out.println("removing");
+//										employees.remove(h);
+//										found = true;
+//										System.out.println("removed");
+//									}
+//								}
+								System.out.println("here");
+								System.out.println(employees.size());
+								if(found) {
+									area.setText("Employee No. " + num1 + " removed.");
+								} else {
+									area.setText("Employee No. " + num1 + " not found.");
+								}
 							}
-							
 							
 						} catch (Exception e2) {
 							area.setText("An error occurred, remember, don't delete the ':' and "
@@ -361,10 +379,7 @@ public class tester {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			area.setText("Total Building Revenue: " + r.getRevenue() +
-					"\nBuilding Rent Cost: " + r.getBuildingCost() + 
-					"\nTotal Building Costs: " + r.getTotalCosts() + 
-					"");
+			
 		}
 	}
 	// Saving actions
@@ -372,8 +387,7 @@ public class tester {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			r.save();
-			area.setText("Saved!");
+			
 		}
 	}
 	// Loading actions
@@ -381,8 +395,7 @@ public class tester {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			r = r.load();
-			area.setText("Loaded!");
+			
 		}
 	}
 

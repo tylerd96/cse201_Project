@@ -200,3 +200,80 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.oomph.setup.ui 1 0 2016-12-04 22:54:13.282
 !MESSAGE Setup tasks were performed during startup updating 172 preferences. See '/Users/tylerdavis/Desktop/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.oomph.setup/setup.log' for details
+!SESSION 2016-12-05 14:00:09.044 -----------------------------------------------
+eclipse.buildId=4.6.1.M20160907-1200
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/tylerdavis/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/tylerdavis/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2016-12-05 14:00:23.190
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2016-12-05 14:00:28.191
+!MESSAGE fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
+
+!ENTRY org.eclipse.oomph.setup.ui 1 0 2016-12-05 14:00:31.005
+!MESSAGE Setup tasks were performed during startup updating 172 preferences. See '/Users/tylerdavis/Desktop/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.oomph.setup/setup.log' for details
+!SESSION 2016-12-05 16:06:41.382 -----------------------------------------------
+eclipse.buildId=4.6.1.M20160907-1200
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/tylerdavis/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/tylerdavis/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2016-12-05 16:06:48.674
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2016-12-05 16:06:54.028
+!MESSAGE fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
+
+!ENTRY org.eclipse.oomph.setup.ui 1 0 2016-12-05 16:06:56.828
+!MESSAGE Setup tasks were performed during startup updating 172 preferences. See '/Users/tylerdavis/Desktop/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.oomph.setup/setup.log' for details
+!SESSION 2016-12-05 18:47:20.055 -----------------------------------------------
+eclipse.buildId=4.6.1.M20160907-1200
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/tylerdavis/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/tylerdavis/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2016-12-05 18:47:27.813
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2016-12-05 18:47:32.630
+!MESSAGE fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
+
+!ENTRY org.eclipse.oomph.setup.core 2 0 2016-12-05 18:47:36.168
+!MESSAGE Widget is disposed
+!STACK 0
+org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:799)
+	at org.eclipse.swt.widgets.Widget.getDisplay(Widget.java:923)
+	at org.eclipse.oomph.ui.UICallback.execInUI(UICallback.java:52)
+	at org.eclipse.oomph.setup.impl.SetupTaskImpl.performUI(SetupTaskImpl.java:923)
+	at org.eclipse.oomph.setup.impl.PreferenceTaskImpl.perform(PreferenceTaskImpl.java:389)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.doPerformNeededSetupTasks(SetupTaskPerformer.java:3151)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.access$1(SetupTaskPerformer.java:3094)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer$WorkspaceUtil$1.run(SetupTaskPerformer.java:4315)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer$WorkspaceUtil.performNeededSetupTasks(SetupTaskPerformer.java:4309)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer$WorkspaceUtil.access$0(SetupTaskPerformer.java:4307)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.performNeededSetupTasks(SetupTaskPerformer.java:3085)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.performTriggeredSetupTasks(SetupTaskPerformer.java:3060)
+	at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.perform(SetupTaskPerformer.java:2960)
+	at org.eclipse.oomph.setup.ui.wizards.ProgressPage$9.run(ProgressPage.java:556)
+	at org.eclipse.oomph.setup.ui.wizards.ProgressPage$11$1.run(ProgressPage.java:682)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.oomph.setup.ui 1 0 2016-12-05 18:47:36.171
+!MESSAGE Setup tasks were performed during startup updating 172 preferences. See '/Users/tylerdavis/Desktop/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.oomph.setup/setup.log' for details

@@ -85,7 +85,9 @@ public class Restauraunt {
 	public double getTotalCosts() {
 		double money = 0;
 		for(Employee e : employees) {
-			money += e.getSalary();
+			if(e instanceof Manager) {
+				
+			}
 		}
 		return money + getBuildingCost();
 	}
